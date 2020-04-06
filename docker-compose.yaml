@@ -21,8 +21,11 @@ services:
 
 
     nginx:
-        build: .docker/nginx
+        image: leolegends/nginx:php
         container_name: nginx
+        environment: 
+            - SERVICE=app
+            - SERVICE_PORT=9000
         restart: always
         tty: true
         ports: 
