@@ -4,7 +4,9 @@ A aplicação já está rodando com as configurações do Nginx via docker-compo
 
 ### Para rodar a imagem go docker:
 
-docker run leolegends/go:stable
+1.232MB
+
+docker run leolegends/go:stable  
 
 ## DockerHub
 
