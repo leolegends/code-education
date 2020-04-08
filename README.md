@@ -4,7 +4,7 @@ A aplicação já está rodando com as configurações do Nginx via docker-compo
 
 ### Para rodar a imagem go docker:
 
-docker run -d -p 8080:80 -e PORT=80 leolegends/go:stable
+docker run leolegends/go:stable
 
 ## DockerHub
 
