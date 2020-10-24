@@ -15,6 +15,9 @@ RUN wget https://getcomposer.org/download/1.10.13/composer.phar
 
 RUN mv composer.phar /usr/local/bin/composer
 
+RUN chmod +x /usr/local/bin/composer
+RUN chmod 777 /usr/local/bin/composer
+
 RUN composer --version
 
 # RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer 
