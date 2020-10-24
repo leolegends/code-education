@@ -12,4 +12,8 @@ steps:
   name: "gcr.io/cloud-builders/docker"
   args: ['ps']
 
+- id: "Rodando Composer"
+  name: "gcr/io/cloud-builders/docker"
+  args: ['exec','-t','app','composer','install']
+
   #adicione este step depois do up -d
