@@ -14,7 +14,7 @@ steps:
 
 - id: "RUNNING Composer"
   name: "gcr.io/cloud-builders/docker"
-  args: ['exec','-t','app', 'composer','install','-d=/var/www']
+  args: ['exec','-t','app', 'composer','install','-d=/var/www/']
 
 - id: "Copiando .env"
   name: "gcr.io/cloud-builders/docker"
