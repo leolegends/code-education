@@ -11,8 +11,14 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
 WORKDIR /var/www
 RUN rm -rf /var/www/html
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer 
-RUN composer self-update --stable
+RUN wget https://getcomposer.org/download/1.10.13/composer.phar 
+
+RUN mv composer.phar /usr/local/bin/composer
+
+RUN composer --version
+
+# RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer 
+# RUN composer self-update --stable
 
 # COPY . /var/www
 RUN ln -s public html
