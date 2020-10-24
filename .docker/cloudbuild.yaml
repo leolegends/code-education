@@ -1,6 +1,6 @@
 steps:
 
-- id: "Rodando docker-compose"
+- id: "RUNNING docker-compose"
   name: 'gcr.io/$PROJECT_ID/docker-compose:1.25.5'
   args: ['-f','docker-compose.cloudbuild.yaml', 'up','-d']
 
@@ -8,12 +8,26 @@ steps:
   name: 'gcr.io/cloud-builders/docker'
   args: ['exec','-u','root','-t','app','chown','-R','www-data:www-data','/var/www']
 
-- id: "Rodando Docker ps"
+- id: "RUNNING Docker ps"
   name: "gcr.io/cloud-builders/docker"
   args: ['ps']
 
-- id: "Rodando Composer"
-  name: "gcr/io/cloud-builders/docker"
+- id: "RUNNING Composer"
+  name: "gcr.io/cloud-builders/docker"
   args: ['exec','-t','app','composer','install']
 
-  #adicione este step depois do up -d
+- id: "Copiando .env"
+  name: "gcr.io/cloud-builders/docker"
+  args: ['exec','-t','app','cp','.env.example','.env']
+
+- id: "RUNNING key:generate"
+  name: "gcr.io/cloud-builders/docker"
+  args: ['exec','-t','app','php','/var/www/artisan','key:generate']
+
+- id: "RUNNING migrations"
+  name: "gcr.io/cloud-builders/docker"
+  args: ['exec','-t','app','php','/var/www/artisan','migrate']
+
+- id: "RUNNING php unit"
+  name: "gcr.io/cloud-builders/docker"
+  args: ['exec','-t','app','php','/var/www/vendor/bin/phpunit','-c','/var/www/phpunit.xml']
