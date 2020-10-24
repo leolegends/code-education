@@ -22,9 +22,6 @@ RUN chmod 777 /usr/local/bin/composer
 
 RUN chown -R www-data:www-data /var/www
 
-RUN usermod -u 1000 www-data
-USER www-data
-
 RUN composer --version
 
 # RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer 
@@ -32,6 +29,9 @@ RUN composer --version
 
 # COPY . /var/www
 RUN ln -s public html
+
+RUN usermod -u 1000 www-data
+USER www-data
 
 EXPOSE 9000
 
